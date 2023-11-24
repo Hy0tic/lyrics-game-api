@@ -52,7 +52,7 @@ Task("Generate Build Info")
         }};
 
         var json = JsonConvert.SerializeObject(data);
-        var outputPath = "./";
+        var outputPath = "./music-game-api";
         var fileName = "buildinfo.json";
 
         var filePath = System.IO.Path.Combine(outputPath, fileName);
