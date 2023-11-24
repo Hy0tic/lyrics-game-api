@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "music-game-api", "music-game-api\music-game-api.csproj", "{EDB12311-5250-4386-A1D6-DF5C638499CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDB12311-5250-4386-A1D6-DF5C638499CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDB12311-5250-4386-A1D6-DF5C638499CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDB12311-5250-4386-A1D6-DF5C638499CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDB12311-5250-4386-A1D6-DF5C638499CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
