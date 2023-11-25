@@ -17,13 +17,15 @@ public class SongService
     public async Task<GetRandomSongLyricsResult> GetRandomSongLyrics()
     {
         var response = await _httpClient.GetAsync(LyricsApiUrl);
-        
         response.EnsureSuccessStatusCode();
-        
         var responseBody = await response.Content.ReadAsStringAsync();
-        
         var result = JsonSerializer.Deserialize<GetRandomSongLyricsResult>(responseBody);
         
         return result;
+    }
+
+    public async Task GetRandomSongLyrics()
+    {
+
     }
 }
