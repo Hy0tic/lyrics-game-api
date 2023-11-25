@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\music-game-api\music-game-api.csproj" />
+  </ItemGroup>
+
 </Project>
