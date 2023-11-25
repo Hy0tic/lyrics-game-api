@@ -24,8 +24,4 @@ public class SongService
         return result;
     }
 
-    public async Task GetRandomSongLyrics()
-    {
-
-    }
 }
