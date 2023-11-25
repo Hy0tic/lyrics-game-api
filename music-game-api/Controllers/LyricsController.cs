@@ -12,13 +12,13 @@ public class LyricsController : Controller
     {
         SongService = songService;
     }
-    
+
     [HttpGet("/Hello")]
-    public async Task<IActionResult> Hello()
+    public IActionResult Hello()
     {
         return Ok("hello this is Lyrics-game-api");
     }
-    
+
     [HttpGet("/GetRandomLyrics")]
     public async Task<IActionResult> GetRandomLyrics()
     {
