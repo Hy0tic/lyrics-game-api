@@ -7,3 +7,5 @@ riderModule.iml
 tools/**
 
 buildinfo.json
+.terraform.lock.hcl
+.terraform

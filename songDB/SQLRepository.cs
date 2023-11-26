@@ -11,14 +11,17 @@ public class SQLRepository
 
     public void AddSong()
     {
-        string sqlQuery = "";
+        var sqlQuery = "";
         using (SqlConnection conn = new SqlConnection(ConnectionStrings))
         {
             conn.Open();
 
-            SqlCommand command = new SqlCommand(sqlQuery, conn);
+            var command = new SqlCommand(sqlQuery, conn);
             command.Parameters.AddWithValue("@name", "");
             command.Parameters.AddWithValue("@album", "");
+            command.Parameters.AddWithValue("@mp3", "");
+            command.Parameters.AddWithValue("@artist", "");
+            command.Parameters.AddWithValue("@lyrics", "");
 
             command.ExecuteNonQuery();
         }
@@ -28,20 +31,19 @@ public class SQLRepository
 
     public void GetRandomSong()
     {
-        string sqlQuery = "";
+        var sqlQuery = "";
 
-        using (SqlConnection con = new SqlConnection(ConnectionStrings))
+        using (var con = new SqlConnection(ConnectionStrings))
         {
             con.Open();
             
-            SqlCommand command = new SqlCommand(sqlQuery, con);
-            SqlDataReader reader = command.ExecuteReader();
+            var command = new SqlCommand(sqlQuery, con);
+            var reader = command.ExecuteReader();
 
             while (reader.Read())
             {
 
             }
-
         } 
 
         return;
