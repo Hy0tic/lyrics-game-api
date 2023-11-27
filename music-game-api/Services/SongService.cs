@@ -1,4 +1,5 @@
 ﻿using music_game_api.Models;
+using songDB;
 using System.Text.Json;
 
 namespace music_game_api.Services;
@@ -8,10 +9,12 @@ public class SongService
 {
     private const string LyricsApiUrl = "https://taylorswiftapi.onrender.com/get";
     private readonly HttpClient _httpClient;
+    private readonly ExcelSongRepository _excelSongRepository;
 
-    public SongService()
+    public SongService( HttpClient httpClient,ExcelSongRepository excelSongRepository)
     {
-        _httpClient = new HttpClient();
+        _httpClient = httpClient;
+        _excelSongRepository = excelSongRepository;
     }
 
     public async Task<GetRandomSongLyricsResult> GetRandomSongLyrics()
@@ -22,6 +25,11 @@ public class SongService
         var result = JsonSerializer.Deserialize<GetRandomSongLyricsResult>(responseBody);
         
         return result;
+    }
+
+    public async Task<string> GetRandomSong()
+    {
+        return _excelSongRepository.GetRandomSong();
     }
 
 }

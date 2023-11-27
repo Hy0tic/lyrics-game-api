@@ -1,4 +1,6 @@
 using music_game_api.Services;
+using songDB;
+using System.Net.Http;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<HttpClient>();
+builder.Services.AddSingleton<ExcelSongRepository>();
 builder.Services.AddSingleton<SongService>();
 
 var app = builder.Build();

@@ -15,9 +15,10 @@ public class LyricsController : Controller
     }
 
     [HttpGet("/Hello")]
-    public IActionResult Hello()
+    public async Task<IActionResult> Hello()
     {
-        return Ok("hello this is Lyrics-game-api");
+        var x = await SongService.GetRandomSong();
+        return Ok(x);
     }
 
     [HttpGet("/GetRandomLyrics")]
