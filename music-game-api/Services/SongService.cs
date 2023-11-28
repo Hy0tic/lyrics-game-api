@@ -32,4 +32,9 @@ public class SongService
         return _excelSongRepository.GetRandomSong();
     }
 
+    public async Task<string> GetRandomSongTitle()
+    {
+        return _excelSongRepository.GetRandomSongTitle();
+    }
+
 }
