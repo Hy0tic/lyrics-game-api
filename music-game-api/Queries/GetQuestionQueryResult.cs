@@ -2,11 +2,12 @@
 
 public class GetQuestionQueryResult : QueryResult
 {
-    public GetQuestionQueryResult(string quote, string album, string song)
+    public GetQuestionQueryResult(string quote, string album, string song, List<string> choices)
     {
         Quote = quote;
         Album = album;
         Song = song;
+        Choices = choices;
     }
 
     public string Quote { get; set; }

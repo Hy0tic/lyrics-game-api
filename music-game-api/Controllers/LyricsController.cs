@@ -55,8 +55,10 @@ public class LyricsController : Controller
             randomSong.Name
         };
 
-        var result = new GetQuestionQueryResult(randomSong.Lyrics, randomSong.Album, randomSong.Name);
-        result.Choices = randomTitles.OrderBy(x=> Random.Shared.Next()).ToList();;
+        var result = new GetQuestionQueryResult(randomSong.Lyrics,
+            randomSong.Album,
+            randomSong.Name,
+            randomTitles.OrderBy(x=> Random.Shared.Next()).ToList());
 
         return Ok(result);
     }
