@@ -11,7 +11,6 @@ public class ExcelSongRepository {
         using (var package = new ExcelPackage(new FileInfo(path)))
         {
             var worksheet = package.Workbook.Worksheets[0];
-
             var totalRows = worksheet.Dimension.Rows;
             var rowIndex = RandomNumberGenerator.GetInt32(totalRows);
 
