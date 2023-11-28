@@ -1,35 +1,29 @@
-using Microsoft.VisualBasic.FileIO;
+using System.Security.Cryptography;
+using OfficeOpenXml;
 
 namespace songDB;
 public class ExcelSongRepository {
 
     public ExcelSongRepository() { }
 
-    public string GetRandomSong() {
-        var path = "../songDB/songs.csv";
-        using (TextFieldParser csvParser = new TextFieldParser(path))
+    public Song GetRandomSong() {
+        var path = "../songDB/songs.xlsx";
+        using (var package = new ExcelPackage(new FileInfo(path)))
         {
-            csvParser.CommentTokens = new string[] { "#" };
-            csvParser.SetDelimiters(new string[] { "," });
-            csvParser.HasFieldsEnclosedInQuotes = true;
+            var worksheet = package.Workbook.Worksheets[0];
 
-            // Skip the row with the column names
-            csvParser.ReadLine();
+            var totalRows = worksheet.Dimension.Rows;
+            var rowIndex = RandomNumberGenerator.GetInt32(totalRows);
 
-            while (!csvParser.EndOfData)
-            {
-                // Read current line fields, pointer moves to the next line.
-                string[] fields = csvParser.ReadFields();
-                string Song = fields[0];
-                string Album = fields[1];
-                string Lyrics = fields[2];
-                return Lyrics;
-            }
+            var songTitle = worksheet.Cells[rowIndex, 1].Value.ToString();
+            var songAlbum = worksheet.Cells[rowIndex, 2].Value.ToString();
+            var songLyrics = worksheet.Cells[rowIndex, 3].Value.ToString();
+
+            var songResult = new Song(songTitle, songAlbum, songLyrics);
+            return songResult;
+
         }
 
-        return "";
-
     }
-
 
 }

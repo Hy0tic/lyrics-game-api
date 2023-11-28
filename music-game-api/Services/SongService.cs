@@ -27,7 +27,7 @@ public class SongService
         return result;
     }
 
-    public async Task<string> GetRandomSong()
+    public async Task<Song> GetRandomSong()
     {
         return _excelSongRepository.GetRandomSong();
     }

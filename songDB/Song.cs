@@ -10,9 +10,16 @@ public class Song {
         Mp3 = mp3;
     }
 
+    public Song(string name, string album, string lyrics)
+    {
+        Name = name;
+        Album = album;
+        Lyrics = lyrics;
+    }
+
     public string Name { get; set; }
     public string Album { get; set; }
-    public string Artist { get; set;}
     public string Lyrics { get; set; }
+    public string Artist { get; set;}
     public string Mp3 { get; set; }
 }
