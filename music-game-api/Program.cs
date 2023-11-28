@@ -1,9 +1,13 @@
 using music_game_api.Services;
+using OfficeOpenXml;
 using songDB;
 using System.Net.Http;
 
 
 var builder = WebApplication.CreateBuilder(args);
+var path = "../songDB/songs.xlsx";
+var excelFile = new FileInfo(path);
+var excelPackage = new ExcelPackage(excelFile);
 
 // Add services to the container.
 
@@ -12,7 +16,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<HttpClient>();
-builder.Services.AddSingleton<ExcelSongRepository>();
+builder.Services.AddSingleton<ExcelSongRepository>(provider => new ExcelSongRepository(excelPackage));
+
 builder.Services.AddSingleton<SongService>();
 
 var app = builder.Build();
