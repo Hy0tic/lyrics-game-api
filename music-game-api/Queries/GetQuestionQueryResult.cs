@@ -12,4 +12,5 @@ public class GetQuestionQueryResult : QueryResult
     public string Quote { get; set; }
     public string Album { get; set; }
     public string Song { get; set; }
+    public List<string> Choices { get; set; }
 }

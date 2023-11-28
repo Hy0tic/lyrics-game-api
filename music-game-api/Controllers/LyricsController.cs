@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using music_game_api.Models;
+using music_game_api.Queries;
 using music_game_api.Services;
 using System.Text.Json;
 
@@ -39,6 +40,24 @@ public class LyricsController : Controller
     {
         var randomLyrics = await SongService.GetRandomSongLyrics();
         var result = new GetRandomSongLyricsResult(randomLyrics.quote, randomLyrics.song, randomLyrics.album);
+        return Ok(result);
+    }
+
+    [HttpGet("getQuestion")]
+    public async Task<IActionResult> GetQuestion()
+    {
+        var randomSong = await SongService.GetRandomSong();
+        var randomTitles = new List<string>
+        {
+            await SongService.GetRandomSongTitle(),
+            await SongService.GetRandomSongTitle(),
+            await SongService.GetRandomSongTitle(),
+            randomSong.Name
+        };
+
+        var result = new GetQuestionQueryResult(randomSong.Lyrics, randomSong.Album, randomSong.Name);
+        result.Choices = randomTitles.OrderBy(x=> Random.Shared.Next()).ToList();;
+
         return Ok(result);
     }
 
