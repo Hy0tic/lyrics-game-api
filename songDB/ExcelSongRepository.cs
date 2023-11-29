@@ -4,21 +4,20 @@ using OfficeOpenXml;
 namespace songDB;
 public class ExcelSongRepository 
 {
-    private ExcelPackage excelPackage { get; set; }
+    private IExcelPackageWrapper excelPackageWrapper { get; set; }
 
-    public ExcelSongRepository(ExcelPackage excelPackage)
+    public ExcelSongRepository(IExcelPackageWrapper excelPackageWrapper)
     {
-        this.excelPackage = excelPackage;
+        this.excelPackageWrapper = excelPackageWrapper;
     }
 
     public Song GetRandomSong() {
-        var worksheet = excelPackage.Workbook.Worksheets[0];
-        var totalRows = worksheet.Dimension.Rows;
+        var totalRows = excelPackageWrapper.GetTotalRows();
         var rowIndex = RandomNumberGenerator.GetInt32(totalRows);
 
-        var songTitle = worksheet.Cells[rowIndex, 1].Value.ToString();
-        var songAlbum = worksheet.Cells[rowIndex, 2].Value.ToString();
-        var songLyrics = worksheet.Cells[rowIndex, 3].Value.ToString();
+        var songTitle = excelPackageWrapper.GetTitleAtRow(rowIndex);
+        var songAlbum = excelPackageWrapper.GetAlbumAtRow(rowIndex);
+        var songLyrics = excelPackageWrapper.GetLyricsAtRow(rowIndex);
 
         var songResult = new Song(songTitle, songAlbum, songLyrics);
         return songResult;
@@ -26,11 +25,10 @@ public class ExcelSongRepository
 
     public string GetRandomSongTitle()
     {
-        var worksheet = excelPackage.Workbook.Worksheets[0];
-        var totalRows = worksheet.Dimension.Rows;
+        var totalRows = excelPackageWrapper.GetTotalRows();
         var rowIndex = RandomNumberGenerator.GetInt32(totalRows);
 
-        var songTitle = worksheet.Cells[rowIndex, 1].Value.ToString();
+        var songTitle = excelPackageWrapper.GetTitleAtRow(rowIndex);
 
         return songTitle;
     }

@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 var path = "../songDB/songs.xlsx";
 var excelFile = new FileInfo(path);
 var excelPackage = new ExcelPackage(excelFile);
+var excelPackageWrapper = new ExcelPackageWrapper(excelPackage);
 
 // Add services to the container.
 
@@ -18,7 +19,8 @@ builder.Services
 builder.Services
     .AddSwaggerGen()
     .AddSingleton<HttpClient>()
-    .AddSingleton<ExcelSongRepository>(provider => new ExcelSongRepository(excelPackage))
+    .AddSingleton<IExcelPackageWrapper>(excelPackageWrapper)
+    .AddSingleton<ExcelSongRepository>(provider => new ExcelSongRepository(excelPackageWrapper))
     .AddSingleton<SongService>();
 
 var app = builder.Build();
