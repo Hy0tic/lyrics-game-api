@@ -12,13 +12,15 @@ var excelPackage = new ExcelPackage(excelFile);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<HttpClient>();
-builder.Services.AddSingleton<ExcelSongRepository>(provider => new ExcelSongRepository(excelPackage));
+builder.Services
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen();
 
-builder.Services.AddSingleton<SongService>();
+builder.Services
+    .AddSwaggerGen()
+    .AddSingleton<HttpClient>()
+    .AddSingleton<ExcelSongRepository>(provider => new ExcelSongRepository(excelPackage))
+    .AddSingleton<SongService>();
 
 var app = builder.Build();
 
