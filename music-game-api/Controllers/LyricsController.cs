@@ -62,22 +62,8 @@ public class LyricsController : Controller
 
         return Ok(result);
     }
+    
 
-    [HttpGet("/getVersion")]
-    public IActionResult Version()
-    {
-        const string filePath = "buildinfo.json";
-        if (!System.IO.File.Exists(filePath))
-        {
-            return NotFound();
-        }
-        
-        string jsonString = System.IO.File.ReadAllText(filePath);
-        var jsonData = JsonSerializer.Deserialize<Dictionary<string, BuildInfo>>(jsonString);
-
-        var buildInfo = jsonData["buildInfo"];
-
-        return Ok(buildInfo);
-    }
+    
     
 }

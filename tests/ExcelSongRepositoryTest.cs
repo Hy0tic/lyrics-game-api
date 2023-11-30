@@ -1,6 +1,6 @@
 using songDB;
 using Moq;
-using OfficeOpenXml;
+using System.Security.Cryptography;
 
 namespace tests;
 
@@ -44,21 +44,18 @@ public class ExcelSongRepositoryTest
     [Fact]
     public void GetRandomSongReturnSong()
     {
-        // Given
-        
-        // When
         var song = songRepository.GetRandomSong();
-
-        // Then
         Assert.IsType<Song>(song);
     }
 
     // [Fact]
     // public void GetRandomSongCallsRandomFunction()
     // {
-    //     var song = songRepository.Get;
+    //     var mockRandomClass = new Mock<RandomNumberGenerator>();
+        
+    //     songRepository.GetRandomSong();
 
-    //     Assert.IsType<Song>(song);
+    //     mockRandomClass.Verify(dependency => dependency.GetInt32(It.IsAny<int>()), Times.Once());
     // }
 
 }
