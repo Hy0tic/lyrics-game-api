@@ -2,7 +2,7 @@ using music_game_api.Services;
 using OfficeOpenXml;
 using songDB;
 
-
+ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 var builder = WebApplication.CreateBuilder(args);
 var path = "../songDB/songs.xlsx";
 var excelFile = new FileInfo(path);
