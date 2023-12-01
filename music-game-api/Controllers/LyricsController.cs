@@ -14,27 +14,14 @@ public class LyricsController : Controller
     {
         SongService = songService;
     }
-
-    [HttpGet("/Hello")]
-    public async Task<IActionResult> Hello()
-    {
-        return Ok("hello this is the lyrics game api");
-    }
-
+    
     [HttpGet("/getRandomSong")]
     public async Task<IActionResult> GetRandomSong()
     {
         var x = await SongService.GetRandomSong();
         return Ok(x);
     }
-
-    [HttpGet("/getRandomSongTitle")]
-    public async Task<IActionResult> GetRandomSongTitle()
-    {
-        var x = await SongService.GetRandomSongTitle();
-        return Ok(x);
-    }
-
+    
     [HttpGet("/GetRandomLyrics")]
     public async Task<IActionResult> GetRandomLyrics()
     {

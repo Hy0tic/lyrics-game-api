@@ -5,6 +5,12 @@ namespace music_game_api.Controllers;
 
 public class HealthController : Controller
 {
+    [HttpGet("/Hello")]
+    public async Task<IActionResult> Hello()
+    {
+        return Ok("hello this is the lyrics game api");
+    }
+    
     [HttpGet("/getVersion")]
     public IActionResult Version()
     {
