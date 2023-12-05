@@ -29,6 +29,7 @@ public class SongService
     {
         var result = _excelSongRepository.GetRandomSong();
         result.Lyrics = GetRandomLyricSection(result.Lyrics);
+        result.Album = result.Album;
         
         return result;
     }
@@ -37,8 +38,8 @@ public class SongService
     {
         return _excelSongRepository.GetRandomSongTitle();
     }
-    
-    public string GetRandomLyricSection(string lyrics)
+
+    private string GetRandomLyricSection(string lyrics)
     {
         // Split the lyrics into sections
         var sections = lyrics.Split(new string[] { "\n\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -48,4 +49,5 @@ public class SongService
         var randomIndex = random.Next(sections.Length);
         return sections[randomIndex];
     }
+    
 }
