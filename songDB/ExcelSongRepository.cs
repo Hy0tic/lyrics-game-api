@@ -17,7 +17,7 @@ public class ExcelSongRepository
         var rowIndex = RandomNumberGenerator.GetInt32(1,totalRows-1);
 
         var songTitle = RemoveContentInParentheses(excelPackageWrapper.GetTitleAtRow(rowIndex));
-        var songAlbum = RemoveContentInParentheses(excelPackageWrapper.GetAlbumAtRow(rowIndex));
+        var songAlbum = RemoveContentInSquareBrackets(RemoveContentInParentheses(excelPackageWrapper.GetAlbumAtRow(rowIndex)));
         var songLyrics = excelPackageWrapper.GetLyricsAtRow(rowIndex);
 
         var songResult = new Song(songTitle, songAlbum, songLyrics);
@@ -37,6 +37,11 @@ public class ExcelSongRepository
     private string RemoveContentInParentheses(string input)
     {
         return Regex.Replace(input, @"\([^)]*\)", "").Trim();
+    }
+    
+    private string RemoveContentInSquareBrackets(string input)
+    {
+        return Regex.Replace(input, @"\[[^\]]*\]", "").Trim();
     }
 
 }
