@@ -1,6 +1,7 @@
 using songDB;
 using Moq;
 using System.Security.Cryptography;
+using songDB.Helpers;
 
 namespace tests;
 
@@ -8,9 +9,12 @@ public class ExcelSongRepositoryTest
 {
     private ExcelSongRepository songRepository { get; set; }
     private Mock<IExcelPackageWrapper> excelPackageWrapperMock { get; set; }
+    private Mock<StringHelper> stringHelperMock { get; set; }
+
     public ExcelSongRepositoryTest()
     {
         excelPackageWrapperMock = new Mock<IExcelPackageWrapper>();
+        stringHelperMock = new Mock<StringHelper>();
         excelPackageWrapperMock.Setup(service => 
             service
                 .GetTitleAtRow(It.IsAny<int>()))
@@ -31,7 +35,7 @@ public class ExcelSongRepositoryTest
                 .GetTotalRows())
                 .Returns(255);
 
-        songRepository = new ExcelSongRepository(excelPackageWrapperMock.Object);
+        songRepository = new ExcelSongRepository(excelPackageWrapperMock.Object, stringHelperMock.Object);
     }
 
     [Fact]
