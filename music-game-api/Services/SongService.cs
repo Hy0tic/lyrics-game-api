@@ -1,7 +1,6 @@
 ﻿using music_game_api.Models;
 using songDB;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 
 
 namespace music_game_api.Services;
@@ -29,7 +28,7 @@ public class SongService
     public async Task<Song> GetRandomSong()
     {
         var result = _excelSongRepository.GetRandomSong();
-        //result.Lyrics = GetRandomSentence(result.Lyrics);
+        result.Lyrics = GetRandomLyricSection(result.Lyrics);
         
         return result;
     }
@@ -39,41 +38,14 @@ public class SongService
         return _excelSongRepository.GetRandomSongTitle();
     }
     
-    
-    private string RemoveBracketsAndContents(string input)
+    public string GetRandomLyricSection(string lyrics)
     {
-        if (string.IsNullOrEmpty(input))
-        {
-            return input;
-        }
-        // Regular expression to match text in square brackets including the brackets
-        var pattern = @"\[.*?\]";
-        var result = Regex.Replace(input, pattern, string.Empty);
+        // Split the lyrics into sections
+        var sections = lyrics.Split(new string[] { "\n\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-        return result;
-    }
-    
-    public string GetRandomSentence(string text)
-    {
-        if (string.IsNullOrEmpty(text))
-        {
-            return "";
-        }
-
-        // Split the text into sentences
-        var sentences = text.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-
-        // Check if there are any sentences
-        if (sentences.Length == 0)
-        {
-            return "";
-        }
-
+        // Select a random section
         var random = new Random();
-        var index = random.Next(sentences.Length);
-
-        // Trim to remove any leading or trailing white spaces
-        return sentences[index].Trim() + ".";
+        var randomIndex = random.Next(sections.Length);
+        return sections[randomIndex];
     }
-
 }

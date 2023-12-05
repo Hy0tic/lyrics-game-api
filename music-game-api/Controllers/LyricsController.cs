@@ -2,7 +2,6 @@
 using music_game_api.Models;
 using music_game_api.Queries;
 using music_game_api.Services;
-using System.Text.Json;
 
 namespace music_game_api.Controllers;
 
