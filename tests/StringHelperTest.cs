@@ -11,19 +11,23 @@ public class StringHelperTest
         stringHelper = new StringHelper();
     }
     
-    [Fact]
-    public void RemoveContentInParentheses_Works()
+    [Theory]
+    [InlineData("1989 (Tangerine Edition)", "1989")]
+    [InlineData("Red (Deluxe Edition)", "Red")]
+    [InlineData("No Brackets", "No Brackets")]
+    public void RemoveContentInParentheses_Works(string input, string expected)
     {
-        var result = stringHelper.RemoveContentInParentheses("Red (Taylor's Version)");
-        var expected = "Red";
+        var result = stringHelper.RemoveContentInParentheses(input);
         Assert.Equal(expected,result);
     }
     
-    [Fact]
-    public void RemoveContentInSquareBrackets_Works()
+    [Theory]
+    [InlineData("1989 [Tangerine Edition]", "1989")]
+    [InlineData("Red [Deluxe Edition]", "Red")]
+    [InlineData("No Brackets", "No Brackets")]
+    public void RemoveContentInSquareBrackets_Works(string input, string expected)
     {
-        var result = stringHelper.RemoveContentInSquareBrackets("Red [Tangerine Version]");
-        var expected = "Red";
+        var result = stringHelper.RemoveContentInSquareBrackets(input);
         Assert.Equal(expected,result);
     }
 
