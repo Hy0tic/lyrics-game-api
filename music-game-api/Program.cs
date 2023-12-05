@@ -1,3 +1,4 @@
+using music_game_api.Hubs;
 using music_game_api.Services;
 using OfficeOpenXml;
 using songDB;
@@ -10,11 +11,11 @@ var excelPackage = new ExcelPackage(excelFile);
 var excelPackageWrapper = new ExcelPackageWrapper(excelPackage);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services
     .AddEndpointsApiExplorer()
-    .AddSwaggerGen();
+    .AddSwaggerGen()
+    .AddSignalR();
 
 builder.Services
     .AddSwaggerGen()
@@ -38,4 +39,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapHub<LobbyHub>("/lobby-hub");
 app.Run();

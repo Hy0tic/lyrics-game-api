@@ -16,9 +16,9 @@ public class ExcelSongRepository
         var totalRows = excelPackageWrapper.GetTotalRows();
         var rowIndex = RandomNumberGenerator.GetInt32(1,totalRows-1);
 
-        var songTitle = RemoveContentInParentheses(excelPackageWrapper.GetTitleAtRow(rowIndex));
+        var songTitle = RemoveContentInSquareBrackets(RemoveContentInParentheses(excelPackageWrapper.GetTitleAtRow(rowIndex)));
         var songAlbum = RemoveContentInSquareBrackets(RemoveContentInParentheses(excelPackageWrapper.GetAlbumAtRow(rowIndex)));
-        var songLyrics = excelPackageWrapper.GetLyricsAtRow(rowIndex);
+        var songLyrics = RemoveContentInSquareBrackets(excelPackageWrapper.GetLyricsAtRow(rowIndex));
 
         var songResult = new Song(songTitle, songAlbum, songLyrics);
         return songResult;
@@ -29,7 +29,7 @@ public class ExcelSongRepository
         var totalRows = excelPackageWrapper.GetTotalRows();
         var rowIndex = RandomNumberGenerator.GetInt32(1,totalRows-1);
 
-        var songTitle = excelPackageWrapper.GetTitleAtRow(rowIndex);
+        var songTitle = RemoveContentInSquareBrackets(excelPackageWrapper.GetTitleAtRow(rowIndex));
 
         return RemoveContentInParentheses(songTitle);
     }
