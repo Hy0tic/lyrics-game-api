@@ -20,7 +20,10 @@ public class StringHelperTest
     public void RemoveContentInParentheses_Works(string input, string expected)
     {
         var result = stringHelper.RemoveContentInParentheses(input);
+
         Assert.Equal(expected,result);
+        Assert.DoesNotContain("(",result);
+        Assert.DoesNotContain(")",result);
     }
     
     [Theory]
@@ -33,33 +36,55 @@ public class StringHelperTest
     {
         var result = stringHelper.RemoveContentInSquareBrackets(input);
         Assert.Equal(expected,result);
+        Assert.DoesNotContain("[",result);
+        Assert.DoesNotContain("]",result);
     }
 
-    [Fact]
-    public void RemoveContentInSquareBrackets_Returns_String()
+    [Theory]
+    [InlineData("1989 [Tangerine Edition]")]
+    [InlineData("Red [Deluxe Edition]")]
+    [InlineData("No Brackets")]
+    [InlineData("[]")]
+    [InlineData("")]
+    public void RemoveContentInSquareBrackets_Returns_String(string input)
     {
-        var result = stringHelper.RemoveContentInSquareBrackets("");
+        var result = stringHelper.RemoveContentInSquareBrackets(input);
         Assert.IsType<string>(result);
     }
     
-    [Fact]
-    public void RemoveContentInParentheses_Returns_String()
+    [Theory]
+    [InlineData("1989 (Tangerine Edition)")]
+    [InlineData("Red (Deluxe Edition)")]
+    [InlineData("No Brackets")]
+    [InlineData("()")]
+    [InlineData("")]
+    public void RemoveContentInParentheses_Returns_String(string input)
     {
-        var result = stringHelper.RemoveContentInParentheses("");
+        var result = stringHelper.RemoveContentInParentheses(input);
         Assert.IsType<string>(result);
     }
     
-    [Fact]
-    public void RemoveContentInSquareBrackets_IsNotNull()
+    [Theory]
+    [InlineData("1989 [Tangerine Edition]")]
+    [InlineData("Red [Deluxe Edition]")]
+    [InlineData("No Brackets")]
+    [InlineData("[]")]
+    [InlineData("")]
+    public void RemoveContentInSquareBrackets_IsNotNull(string input)
     {
-        var result = stringHelper.RemoveContentInSquareBrackets("");
+        var result = stringHelper.RemoveContentInSquareBrackets(input);
         Assert.NotNull(result);
     }
     
-    [Fact]
-    public void RemoveContentInParentheses_IsNotNull()
+    [Theory]
+    [InlineData("1989 (Tangerine Edition)")]
+    [InlineData("Red (Deluxe Edition)")]
+    [InlineData("No Brackets")]
+    [InlineData("()")]
+    [InlineData("")]
+    public void RemoveContentInParentheses_IsNotNull(string input)
     {
-        var result = stringHelper.RemoveContentInParentheses("");
+        var result = stringHelper.RemoveContentInParentheses(input);
         Assert.NotNull(result);
     }
 
