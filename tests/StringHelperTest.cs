@@ -15,6 +15,7 @@ public class StringHelperTest
     [InlineData("1989 (Tangerine Edition)", "1989")]
     [InlineData("Red (Deluxe Edition)", "Red")]
     [InlineData("No Brackets", "No Brackets")]
+    [InlineData("(Tangerine edition)", "")]
     [InlineData("()", "")]
     [InlineData("", "")]
     public void RemoveContentInParentheses_Works(string input, string expected)
@@ -30,6 +31,7 @@ public class StringHelperTest
     [InlineData("1989 [Tangerine Edition]", "1989")]
     [InlineData("Red [Deluxe Edition]", "Red")]
     [InlineData("No Brackets", "No Brackets")]
+    [InlineData("[Tangerine edition]", "")]
     [InlineData("[]", "")]
     [InlineData("", "")]
     public void RemoveContentInSquareBrackets_Works(string input, string expected)
@@ -44,6 +46,7 @@ public class StringHelperTest
     [InlineData("1989 [Tangerine Edition]")]
     [InlineData("Red [Deluxe Edition]")]
     [InlineData("No Brackets")]
+    [InlineData("[Tangerine edition]")]
     [InlineData("[]")]
     [InlineData("")]
     public void RemoveContentInSquareBrackets_Returns_String(string input)
@@ -56,6 +59,7 @@ public class StringHelperTest
     [InlineData("1989 (Tangerine Edition)")]
     [InlineData("Red (Deluxe Edition)")]
     [InlineData("No Brackets")]
+    [InlineData("(Tangerine edition)")]
     [InlineData("()")]
     [InlineData("")]
     public void RemoveContentInParentheses_Returns_String(string input)
@@ -68,6 +72,7 @@ public class StringHelperTest
     [InlineData("1989 [Tangerine Edition]")]
     [InlineData("Red [Deluxe Edition]")]
     [InlineData("No Brackets")]
+    [InlineData("[Tangerine edition]")]
     [InlineData("[]")]
     [InlineData("")]
     public void RemoveContentInSquareBrackets_IsNotNull(string input)
@@ -80,6 +85,7 @@ public class StringHelperTest
     [InlineData("1989 (Tangerine Edition)")]
     [InlineData("Red (Deluxe Edition)")]
     [InlineData("No Brackets")]
+    [InlineData("(Tangerine edition)")]
     [InlineData("()")]
     [InlineData("")]
     public void RemoveContentInParentheses_IsNotNull(string input)

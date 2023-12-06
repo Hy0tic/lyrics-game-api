@@ -1,6 +1,5 @@
 using songDB;
 using Moq;
-using System.Security.Cryptography;
 using songDB.Helpers;
 
 namespace tests;
@@ -15,6 +14,7 @@ public class ExcelSongRepositoryTest
     {
         excelPackageWrapperMock = new Mock<IExcelPackageWrapper>();
         stringHelperMock = new Mock<StringHelper>();
+        
         excelPackageWrapperMock.Setup(service => 
             service
                 .GetTitleAtRow(It.IsAny<int>()))
@@ -33,8 +33,8 @@ public class ExcelSongRepositoryTest
         excelPackageWrapperMock.Setup(service => 
             service
                 .GetTotalRows())
-                .Returns(255);
-
+                .Returns(254);
+        
         songRepository = new ExcelSongRepository(excelPackageWrapperMock.Object, stringHelperMock.Object);
     }
 
@@ -44,6 +44,13 @@ public class ExcelSongRepositoryTest
         var title = songRepository.GetRandomSongTitle();
         Assert.IsType<string>(title);
     }
+    
+    [Fact]
+    public void GetRandomSongTitle_IsNotNull()
+    {
+        var title = songRepository.GetRandomSongTitle();
+        Assert.NotNull(title);
+    }
 
     [Fact]
     public void GetRandomSongReturnSong()
@@ -51,15 +58,12 @@ public class ExcelSongRepositoryTest
         var song = songRepository.GetRandomSong();
         Assert.IsType<Song>(song);
     }
-
-    // [Fact]
-    // public void GetRandomSongCallsRandomFunction()
-    // {
-    //     var mockRandomClass = new Mock<RandomNumberGenerator>();
-        
-    //     songRepository.GetRandomSong();
-
-    //     mockRandomClass.Verify(dependency => dependency.GetInt32(It.IsAny<int>()), Times.Once());
-    // }
+    
+    [Fact]
+    public void GetRandomSOng_IsNotNull()
+    {
+        var song = songRepository.GetRandomSong();
+        Assert.NotNull(song);
+    }
 
 }
