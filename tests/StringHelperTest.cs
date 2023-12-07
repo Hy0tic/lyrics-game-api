@@ -23,6 +23,19 @@ public class StringHelperTest
         var result = stringHelper.RemoveContentInParentheses(input);
 
         Assert.Equal(expected,result);
+    }
+    
+    [Theory]
+    [InlineData("1989 (Tangerine Edition)", "1989")]
+    [InlineData("Red (Deluxe Edition)", "Red")]
+    [InlineData("No Brackets", "No Brackets")]
+    [InlineData("(Tangerine edition)", "")]
+    [InlineData("()", "")]
+    [InlineData("", "")]
+    public void RemoveContentInParentheses_Result_DoesNotContainParenthesis(string input, string expected)
+    {
+        var result = stringHelper.RemoveContentInParentheses(input);
+        
         Assert.DoesNotContain("(",result);
         Assert.DoesNotContain(")",result);
     }
@@ -38,6 +51,20 @@ public class StringHelperTest
     {
         var result = stringHelper.RemoveContentInSquareBrackets(input);
         Assert.Equal(expected,result);
+        Assert.DoesNotContain("[",result);
+        Assert.DoesNotContain("]",result);
+    }
+    
+    [Theory]
+    [InlineData("1989 [Tangerine Edition]", "1989")]
+    [InlineData("Red [Deluxe Edition]", "Red")]
+    [InlineData("No Brackets", "No Brackets")]
+    [InlineData("[Tangerine edition]", "")]
+    [InlineData("[]", "")]
+    [InlineData("", "")]
+    public void RemoveContentInSquareBrackets_Result_DoesNotContainBrackets(string input, string expected)
+    {
+        var result = stringHelper.RemoveContentInSquareBrackets(input);
         Assert.DoesNotContain("[",result);
         Assert.DoesNotContain("]",result);
     }

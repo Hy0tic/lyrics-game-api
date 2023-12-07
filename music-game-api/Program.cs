@@ -10,7 +10,6 @@ var path = "../songDB/songs.xlsx";
 var excelFile = new FileInfo(path);
 var excelPackage = new ExcelPackage(excelFile);
 var excelPackageWrapper = new ExcelPackageWrapper(excelPackage);
-var stringHelper = new StringHelper();
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -23,7 +22,7 @@ builder.Services
     .AddSwaggerGen()
     .AddSingleton<HttpClient>()
     .AddSingleton<IExcelPackageWrapper>(excelPackageWrapper)
-    .AddSingleton<ExcelSongRepository>(provider => new ExcelSongRepository(excelPackageWrapper, stringHelper))
+    .AddSingleton<ExcelSongRepository>(provider => new ExcelSongRepository(excelPackageWrapper, new StringHelper()))
     .AddSingleton<SongService>();
 
 var app = builder.Build();
