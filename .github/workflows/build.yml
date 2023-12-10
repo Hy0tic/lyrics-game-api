@@ -55,7 +55,7 @@ jobs:
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
             echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-            docker stop BnScreenshareAPI
-            docker rm BnScreenshareAPI
-            docker pull ${{ secrets.DOCKER_USERNAME }}/bn-screenshare-api:latest
-            docker run -d --restart=always -p 8081:81 -p 8444:444 --name BnScreenshareAPI ${{ secrets.DOCKER_USERNAME }}/bn-screenshare-api:latest        
+            docker stop Music-Game-Api
+            docker rm Music-Game-Api
+            docker pull ${{ secrets.DOCKER_USERNAME }}/music-game-api:latest
+            docker run -d --restart=always -p 8081:81 -p 8444:444 --name Music-Game-Api ${{ secrets.DOCKER_USERNAME }}/music-game-api:latest        
